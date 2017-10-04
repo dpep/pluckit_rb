@@ -4,13 +4,7 @@ module PluckIt
   class << self
 
     def pluck v, handle
-      if ([Symbol, String].include? handle.class) and v.respond_to? handle
-        if v.method(handle).arity <= 0
-          v.send handle
-        else
-          v.send handle, v
-        end
-      elsif v.is_a? Array
+      if v.is_a? Array
         if handle.is_a? Regexp
           v.grep handle
         else
@@ -18,6 +12,12 @@ module PluckIt
         end
       elsif v.is_a? Hash
         v[handle]
+      elsif ([Symbol, String].include? handle.class) and v.respond_to? handle
+        if v.method(handle).arity <= 0
+          v.send handle
+        else
+          v.send handle, v
+        end
       else
         raise ArgumentError.new "invalid handle: #{handle}, for value #{v}"
       end

@@ -16,16 +16,6 @@ class PluckItArrayTest < Minitest::Test
       [ 1, 4, 7 ],
       data.pluck(0)
     )
-
-    assert_equal(
-      [ 1, 4, 7 ],
-      data.pluck(:first)
-    )
-
-    assert_equal(
-      [ 1, 4, 7 ],
-      data.pluck('first')
-    )
   end
 
 
