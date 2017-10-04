@@ -32,3 +32,11 @@ class Array
     map {|x| PluckIt.pluck x, handle }
   end
 end
+
+
+class Hash
+  def pluck(handle)
+    res = values.map {|x| PluckIt.pluck x, handle }
+    Hash[keys.zip res]
+  end
+end
