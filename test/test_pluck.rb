@@ -19,6 +19,16 @@ class PluckItTest < Minitest::Test
     )
 
     assert_equal(
+      3,
+      PluckIt.pluck(data, :last)
+    )
+
+    assert_equal(
+      3,
+      PluckIt.pluck(data, :count)
+    )
+
+    assert_equal(
       [ 1, 2 ],
       PluckIt.pluck(data, 0..1)
     )
@@ -47,6 +57,10 @@ class PluckItTest < Minitest::Test
 
     assert_nil(
       PluckIt.pluck(data, :z)
+    )
+
+    assert_nil(
+      PluckIt.pluck(data, :count)
     )
   end
 
