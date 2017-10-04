@@ -1,14 +1,14 @@
 $LOAD_PATH.unshift 'lib'
 package_name = 'pluckit'
 require "#{package_name}"
-package = const_get package_name.capitalize
+package = PluckIt
 
 
 Gem::Specification.new do |s|
   s.name        = package_name
   s.version     = package.const_get 'VERSION'
   s.authors     = ['Daniel Pepper']
-  s.summary     = package.to_s
+  s.summary     = 'PluckIt'
   s.description = 'Extract values from Enumerables'
   s.homepage    = "https://github.com/dpep/#{package_name}"
   s.license     = 'MIT'
