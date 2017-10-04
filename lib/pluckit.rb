@@ -13,11 +13,7 @@ module PluckIt
       elsif v.is_a? Hash
         v[handle]
       elsif ([Symbol, String].include? handle.class) and v.respond_to? handle
-        if v.method(handle).arity <= 0
-          v.send handle
-        else
-          v.send handle, v
-        end
+        v.send handle
       else
         raise ArgumentError.new "invalid handle: #{handle}, for value #{v}"
       end
