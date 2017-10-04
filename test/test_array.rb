@@ -59,4 +59,21 @@ class PluckItArrayTest < Minitest::Test
   end
 
 
+  class ABC
+    attr_accessor :val
+    def initialize(v) self.val = v end
+  end
+
+  def test_obj
+    assert_equal(
+      [ 1, 2, 3 ],
+      [
+        ABC.new(1),
+        ABC.new(2),
+        ABC.new(3),
+      ].pluck(:val)
+    )
+  end
+
+
 end
