@@ -51,6 +51,10 @@ class PluckItTest < Minitest::Test
   end
 
 
+  class ABC
+    def foo() 123 end
+  end
+
   def test_obj
     assert_equal(
       123,
@@ -58,15 +62,10 @@ class PluckItTest < Minitest::Test
     )
 
     assert_equal(
-      ABC,
+      self.class.const_get(:ABC),
       PluckIt.pluck(ABC.new, :class)
     )
   end
 
 
-end
-
-
-class ABC
-  def foo() 123 end
 end
