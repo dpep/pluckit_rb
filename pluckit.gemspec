@@ -1,7 +1,6 @@
 $LOAD_PATH.unshift 'lib'
 package_name = 'pluckit'
 require "#{package_name}"
-require "#{package_name}/version"
 package = const_get package_name.capitalize
 
 
