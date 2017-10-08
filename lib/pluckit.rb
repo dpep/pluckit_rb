@@ -36,3 +36,10 @@ class Hash
     Hash[keys.zip res]
   end
 end
+
+
+class Set
+  def pluck(handle)
+    inject(clone.clear) {|set, x| set.add PluckIt.pluck x, handle }
+  end
+end

@@ -82,4 +82,19 @@ class PluckItTest < Minitest::Test
   end
 
 
+  def test_set
+    data = Set.new [ 1, 2, 3 ]
+
+    assert_equal(
+      1,
+      PluckIt.pluck(data, :first)
+    )
+
+    assert_equal(
+      3,
+      PluckIt.pluck(data, :count)
+    )
+  end
+
+
 end
