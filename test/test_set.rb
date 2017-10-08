@@ -24,4 +24,20 @@ class PluckItSetTest < Minitest::Test
   end
 
 
+  class MySet < Set; end
+  def test_clone
+    data = MySet.new [ 1, 2, 3 ]
+
+    assert_equal(
+      Set.new([ 1, 2, 3 ]),
+      data.pluck(:itself)
+    )
+
+    assert_equal(
+      self.class.const_get(:MySet),
+      data.pluck(:itself).class
+    )
+  end
+
+
 end

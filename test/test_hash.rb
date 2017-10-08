@@ -55,4 +55,26 @@ class PluckItHashTest < Minitest::Test
   end
 
 
+  class MyHash < Hash; end
+  def test_clone
+    data = MyHash.new 'abc'
+    data.update a: 1
+
+    assert_equal(
+      { a: 1 },
+      data.pluck(:itself)
+    )
+
+    assert_equal(
+      'abc',
+      data.pluck(:itself)[:missing]
+    )
+
+    assert_equal(
+      self.class.const_get(:MyHash),
+      data.pluck(:itself).class
+    )
+  end
+
+
 end

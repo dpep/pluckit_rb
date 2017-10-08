@@ -25,21 +25,26 @@ end
 
 class Array
   def pluck(handle)
-    map {|x| PluckIt.pluck x, handle }
+    each_with_object(clone.clear) do |val, res|
+      res << PluckIt.pluck(val, handle)
+    end
   end
 end
 
 
 class Hash
   def pluck(handle)
-    res = values.map {|x| PluckIt.pluck x, handle }
-    Hash[keys.zip res]
+    each_with_object(clone.clear) do |(key, val), res|
+      res[key] = PluckIt.pluck(val, handle)
+    end
   end
 end
 
 
 class Set
   def pluck(handle)
-    inject(clone.clear) {|set, x| set.add PluckIt.pluck x, handle }
+    each_with_object(clone.clear) do |val, res|
+      res.add PluckIt.pluck(val, handle)
+    end
   end
 end

@@ -81,4 +81,20 @@ class PluckItArrayTest < Minitest::Test
   end
 
 
+  class MyArray < Array; end
+  def test_clone
+    data = MyArray.new [ 1, 2, 3 ]
+
+    assert_equal(
+      [ 1, 2, 3 ],
+      data.pluck(:itself)
+    )
+
+    assert_equal(
+      self.class.const_get(:MyArray),
+      data.pluck(:itself).class
+    )
+  end
+
+
 end
