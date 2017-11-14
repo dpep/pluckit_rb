@@ -21,7 +21,7 @@ module PluckIt
         v.send handle
       elsif handle.is_a? Regexp and v.respond_to? :grep
         v.grep handle
-      elsif v.is_a? Array
+      elsif v.respond_to? :[]
         v[handle]
       else
         raise ArgumentError.new "invalid handle: #{handle}, for value #{v}"
