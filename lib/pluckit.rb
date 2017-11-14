@@ -19,12 +19,10 @@ module PluckIt
         v[handle]
       elsif ([Symbol, String].include? handle.class) and v.respond_to? handle
         v.send handle
+      elsif handle.is_a? Regexp and v.respond_to? :grep
+        v.grep handle
       elsif v.is_a? Array
-        if handle.is_a? Regexp
-          v.grep handle
-        else
-          v[handle]
-        end
+        v[handle]
       else
         raise ArgumentError.new "invalid handle: #{handle}, for value #{v}"
       end
