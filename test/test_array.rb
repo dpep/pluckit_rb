@@ -21,6 +21,15 @@ class PluckItArrayTest < Minitest::Test
       [ 3, 6, 9 ],
       data.pluck(:last)
     )
+
+    assert_equal(
+      [
+        [ 1, 2 ],
+        [ 4, 5 ],
+        [ 7, 8 ],
+      ],
+      data.pluck(0, 1)
+    )
   end
 
 

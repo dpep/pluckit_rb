@@ -40,6 +40,11 @@ class PluckItTest < Minitest::Test
         /a/
       )
     )
+
+    assert_equal(
+      [ 1, 2 ],
+      PluckIt.pluck(data, 0, 1)
+    )
   end
 
 
@@ -62,11 +67,17 @@ class PluckItTest < Minitest::Test
     assert_nil(
       PluckIt.pluck(data, :count)
     )
+
+    assert_equal(
+      [ 1, 2 ],
+      PluckIt.pluck(data, :a, :b)
+    )
   end
 
 
   class ABC
     def foo() 123 end
+    def bar() 456 end
   end
 
   def test_obj
@@ -78,6 +89,11 @@ class PluckItTest < Minitest::Test
     assert_equal(
       self.class.const_get(:ABC),
       PluckIt.pluck(ABC.new, :class)
+    )
+
+    assert_equal(
+      [ 123, 456 ],
+      PluckIt.pluck(ABC.new, :foo, :bar)
     )
   end
 
@@ -93,6 +109,11 @@ class PluckItTest < Minitest::Test
     assert_equal(
       3,
       PluckIt.pluck(data, :count)
+    )
+
+    assert_equal(
+      [ 1, 3 ],
+      PluckIt.pluck(data, :first, :count)
     )
   end
 

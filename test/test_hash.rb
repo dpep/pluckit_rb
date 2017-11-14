@@ -31,6 +31,19 @@ class PluckItHashTest < Minitest::Test
         c: { x: 3, y: 6 },
       }.pluck(:x)
     )
+
+    assert_equal(
+      {
+        a: [ 1, 2 ],
+        b: [ 2, 4 ],
+        c: [ 3, 6 ],
+      },
+      {
+        a: { x: 1, y: 2 },
+        b: { x: 2, y: 4 },
+        c: { x: 3, y: 6 },
+      }.pluck(:x, :y)
+    )
   end
 
 

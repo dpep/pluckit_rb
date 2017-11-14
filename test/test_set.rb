@@ -21,6 +21,15 @@ class PluckItSetTest < Minitest::Test
       Set.new([ 3, 6, 9 ]),
       data.pluck(:last)
     )
+
+    assert_equal(
+      Set.new([
+        [ 1, 3 ],
+        [ 4, 6 ],
+        [ 7, 9 ],
+      ]),
+      data.pluck(:first, :max)
+    )
   end
 
 
