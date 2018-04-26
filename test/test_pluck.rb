@@ -1,7 +1,6 @@
 require 'minitest/autorun'
 require 'set'
 
-$LOAD_PATH.unshift 'lib'
 require 'pluckit'
 
 
@@ -12,32 +11,32 @@ class PluckItTest < Minitest::Test
 
     assert_equal(
       1,
-      PluckIt.pluck(data, 0)
+      PluckIt.pluckit(data, 0)
     )
 
     assert_equal(
       2,
-      PluckIt.pluck(data, 1)
+      PluckIt.pluckit(data, 1)
     )
 
     assert_equal(
       3,
-      PluckIt.pluck(data, :last)
+      PluckIt.pluckit(data, :last)
     )
 
     assert_equal(
       3,
-      PluckIt.pluck(data, :count)
+      PluckIt.pluckit(data, :count)
     )
 
     assert_equal(
       [ 1, 2 ],
-      PluckIt.pluck(data, 0..1)
+      PluckIt.pluckit(data, 0..1)
     )
 
     assert_equal(
       [ 'a', 'ba', 'ca' ],
-      PluckIt.pluck(
+      PluckIt.pluckit(
         [ 'a', 'ba', 'bb', 'bc', 'ca' ],
         /a/
       )
@@ -45,7 +44,7 @@ class PluckItTest < Minitest::Test
 
     assert_equal(
       [ 1, 2 ],
-      PluckIt.pluck(data, 0, 1)
+      PluckIt.pluckit(data, 0, 1)
     )
   end
 
@@ -59,20 +58,20 @@ class PluckItTest < Minitest::Test
 
     assert_equal(
       2,
-      PluckIt.pluck(data, :b)
+      PluckIt.pluckit(data, :b)
     )
 
     assert_nil(
-      PluckIt.pluck(data, :z)
+      PluckIt.pluckit(data, :z)
     )
 
     assert_nil(
-      PluckIt.pluck(data, :count)
+      PluckIt.pluckit(data, :count)
     )
 
     assert_equal(
       [ 1, 2 ],
-      PluckIt.pluck(data, :a, :b)
+      PluckIt.pluckit(data, :a, :b)
     )
   end
 
@@ -85,17 +84,17 @@ class PluckItTest < Minitest::Test
   def test_obj
     assert_equal(
       123,
-      PluckIt.pluck(ABC.new, :foo)
+      PluckIt.pluckit(ABC.new, :foo)
     )
 
     assert_equal(
       self.class.const_get(:ABC),
-      PluckIt.pluck(ABC.new, :class)
+      PluckIt.pluckit(ABC.new, :class)
     )
 
     assert_equal(
       [ 123, 456 ],
-      PluckIt.pluck(ABC.new, :foo, :bar)
+      PluckIt.pluckit(ABC.new, :foo, :bar)
     )
   end
 
@@ -105,17 +104,17 @@ class PluckItTest < Minitest::Test
 
     assert_equal(
       1,
-      PluckIt.pluck(data, :first)
+      PluckIt.pluckit(data, :first)
     )
 
     assert_equal(
       3,
-      PluckIt.pluck(data, :count)
+      PluckIt.pluckit(data, :count)
     )
 
     assert_equal(
       [ 1, 3 ],
-      PluckIt.pluck(data, :first, :count)
+      PluckIt.pluckit(data, :first, :count)
     )
   end
 

@@ -1,18 +1,41 @@
 module PluckIt
   class << self
 
-    def pluck v, *handles
-      if handles.count > 1
-        handles.map {|h| pluck_single v, h }
+
+    def pluck enumerable, *handles
+      items = enumerable.each_with_object(
+        enumerable.clone.clear
+      )
+      # TODO: if no clone / clear, use new
+
+      if enumerable.is_a?(Hash)
+        items.each do |(key, val), res|
+          res[key] = pluckit(val, *handles)
+        end
+      elsif enumerable.is_a?(Set)
+        items.each do |val, res|
+          res.add pluckit(val, *handles)
+        end
       else
-        pluck_single v, handles.first
+        items.each do |val, res|
+          res << pluckit(val, *handles)
+        end
+      end
+    end
+
+
+    def pluckit v, *handles
+      if handles.count > 1
+        handles.map {|h| pluckit_single v, h }
+      else
+        pluckit_single v, handles.first
       end
     end
 
 
     private
 
-    def pluck_single v, handle
+    def pluckit_single v, handle
       if v.is_a? Hash
         v[handle]
       elsif ([Symbol, String].include? handle.class) and v.respond_to? handle
