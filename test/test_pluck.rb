@@ -1,120 +1,50 @@
 require 'minitest/autorun'
 require 'set'
 
-require 'pluckit'
+require 'pluckit/pluck'
 
 
-class PluckItTest < Minitest::Test
+"""
+basic sanity check, since other tests will
+probe much more extensively
+"""
 
-  def test_array
-    data = [ 1, 2, 3 ]
+class PluckTest < Minitest::Test
 
+  def test_basic
+    data = [
+      { k: 'a', v: 1 },
+      { k: 'b', v: 2 },
+      { k: 'c', v: 3 },
+    ]
     assert_equal(
-      1,
-      PluckIt.pluckit(data, 0)
+      [ 'a', 'b', 'c' ],
+      PluckIt.pluck(data, :k)
     )
 
-    assert_equal(
-      2,
-      PluckIt.pluckit(data, 1)
-    )
 
-    assert_equal(
-      3,
-      PluckIt.pluckit(data, :last)
-    )
-
-    assert_equal(
-      3,
-      PluckIt.pluckit(data, :count)
-    )
-
-    assert_equal(
-      [ 1, 2 ],
-      PluckIt.pluckit(data, 0..1)
-    )
-
-    assert_equal(
-      [ 'a', 'ba', 'ca' ],
-      PluckIt.pluckit(
-        [ 'a', 'ba', 'bb', 'bc', 'ca' ],
-        /a/
-      )
-    )
-
-    assert_equal(
-      [ 1, 2 ],
-      PluckIt.pluckit(data, 0, 1)
-    )
-  end
-
-
-  def test_hash
-    data = {
-      a: 1,
-      b: 2,
-      c: 3,
+    temp = {
+      june: [ 78, 82, 80 ],
+      july: [ 80, 83, 86 ],
+      august: [ 80, 76, 79 ],
     }
-
     assert_equal(
-      2,
-      PluckIt.pluckit(data, :b)
+      {
+        june: 82,
+        july: 86,
+        august: 80,
+      },
+      PluckIt.pluck(temp, :max)
     )
 
-    assert_nil(
-      PluckIt.pluckit(data, :z)
-    )
 
-    assert_nil(
-      PluckIt.pluckit(data, :count)
-    )
-
+    people = Set.new([
+      {name: 'dpepper', age: 31},
+      {name: 'josh', age: 30},
+    ])
     assert_equal(
-      [ 1, 2 ],
-      PluckIt.pluckit(data, :a, :b)
-    )
-  end
-
-
-  class ABC
-    def foo() 123 end
-    def bar() 456 end
-  end
-
-  def test_obj
-    assert_equal(
-      123,
-      PluckIt.pluckit(ABC.new, :foo)
-    )
-
-    assert_equal(
-      self.class.const_get(:ABC),
-      PluckIt.pluckit(ABC.new, :class)
-    )
-
-    assert_equal(
-      [ 123, 456 ],
-      PluckIt.pluckit(ABC.new, :foo, :bar)
-    )
-  end
-
-
-  def test_set
-    data = Set.new [ 1, 2, 3 ]
-
-    assert_equal(
-      1,
-      PluckIt.pluckit(data, :first)
-    )
-
-    assert_equal(
-      3,
-      PluckIt.pluckit(data, :count)
-    )
-
-    assert_equal(
-      [ 1, 3 ],
-      PluckIt.pluckit(data, :first, :count)
+      Set.new(['dpepper', 'josh']),
+      PluckIt.pluck(people, :name)
     )
   end
 
