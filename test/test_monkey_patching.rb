@@ -16,7 +16,7 @@ class MonkeyPatchingTest < Minitest::Test
     # `require 'pluckit/pluck'` should load PluckIt
     assert PluckIt
 
-    # but not monkey patch
+    # but no monkey patching
     assert_raises NoMethodError do
       [ 1, 2, 3 ].pluck 0
     end
@@ -29,7 +29,7 @@ class MonkeyPatchingTest < Minitest::Test
       Set.new([ 1, 2, 3 ]).pluck 0
     end
 
-    puts 'no monkey patching'
+    puts 'yay, no monkey patching'
   end
 
 
