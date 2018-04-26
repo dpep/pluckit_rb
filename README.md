@@ -31,5 +31,5 @@ require 'pluckit'
   june: 82,
   july: 86,
   august: 80,
-},
+}
 ```
