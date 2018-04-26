@@ -2,7 +2,7 @@ require 'minitest/autorun'
 require 'set'
 
 $LOAD_PATH.unshift 'lib'
-require 'pluckit/pluck'
+require 'pluckit'
 
 
 class PluckItTest < Minitest::Test
