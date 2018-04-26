@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.authors     = ['Daniel Pepper']
   s.summary     = 'PluckIt'
   s.description = 'Extract values from Enumerables'
-  s.homepage    = "https://github.com/dpep/#{package_name}"
+  s.homepage    = "https://github.com/dpep/rb_#{package_name}"
   s.license     = 'MIT'
 
   s.files       = Dir.glob('lib/**/*')
