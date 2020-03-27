@@ -4,10 +4,8 @@ require 'set'
 require 'pluckit/pluck'
 
 
-"""
-basic sanity check, since other tests will
-probe much more extensively
-"""
+# basic sanity check, since other tests will
+# probe much more extensively
 
 class PluckTest < Minitest::Test
 
