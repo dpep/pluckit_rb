@@ -8,7 +8,7 @@ Extract values from Enumerables
 
 
 #### Usage
-```
+```ruby
 require 'pluckit'
 
 
