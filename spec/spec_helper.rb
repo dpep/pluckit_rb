@@ -12,6 +12,7 @@ if ENV["CI"] == "true" || ENV["CODECOV_TOKEN"]
 end
 
 # load this gem
+gem_name = Dir.glob("*.gemspec")[0].split(".")[0]
 require "pluckit/pluck"
 
 RSpec.configure do |config|
@@ -31,7 +32,7 @@ RSpec.configure do |config|
   end
 
   config.before do |example|
-    load "./lib/pluckit.rb" unless example.metadata[:before_patch]
+    require gem_name unless example.metadata[:before_patch]
   end
 end
 
