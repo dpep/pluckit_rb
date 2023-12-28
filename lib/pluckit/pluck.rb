@@ -53,11 +53,11 @@ module PluckIt
   def pluckit_single v, handle
     if v.is_a? Hash
       v[handle]
-    elsif ([Symbol, String].include? handle.class) and v.respond_to? handle
+    elsif ([Symbol, String].include? handle.class) && v.respond_to?(handle)
       v.send handle
-    elsif handle.is_a? Regexp and v.respond_to? :grep
+    elsif handle.is_a?(Regexp) && v.respond_to?(:grep)
       v.grep handle
-    elsif v.respond_to? :[]
+    elsif v.respond_to?(:[])
       v[handle]
     else
       raise ArgumentError.new "invalid handle: #{handle}, for value #{v}"
