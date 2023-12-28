@@ -80,4 +80,10 @@ describe "PluckIt.pluckit" do
       expect(PluckIt.pluckit(ABC.new, :ott, :class)).to eq [ 123, ABC ]
     end
   end
+
+  it "catches bogus plucks" do
+    expect {
+      PluckIt.pluckit(ABC.new, :bogus)
+    }.to raise_error(ArgumentError, /invalid handle/)
+  end
 end
