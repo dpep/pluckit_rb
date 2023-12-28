@@ -1,5 +1,7 @@
 PluckIt
 ======
+![Gem](https://img.shields.io/gem/dt/pluckit?style=plastic)
+[![codecov](https://codecov.io/gh/dpep/pluckit_rb/branch/main/graph/badge.svg?token=Z6W48XUEQD)](https://codecov.io/gh/dpep/pluckit_rb)
 
 Extract values from Enumerables
 
