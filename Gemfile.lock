@@ -9,8 +9,6 @@ GEM
     byebug (11.1.3)
     diff-lcs (1.5.0)
     docile (1.4.0)
-    minitest (5.20.0)
-    rake (13.0.1)
     rspec (3.12.0)
       rspec-core (~> 3.12.0)
       rspec-expectations (~> 3.12.0)
@@ -36,9 +34,7 @@ PLATFORMS
 
 DEPENDENCIES
   byebug
-  minitest
   pluckit!
-  rake
   rspec
   simplecov
 
