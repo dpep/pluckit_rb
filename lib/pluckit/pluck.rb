@@ -1,6 +1,23 @@
 module PluckIt
   extend self
 
+  refine Array do
+    def pluck *handles
+      PluckIt.pluck self, *handles
+    end
+  end
+
+  refine Hash do
+    def pluck *handles
+      PluckIt.pluck self, *handles
+    end
+  end
+
+  refine Set do
+    def pluck *handles
+      PluckIt.pluck self, *handles
+    end
+  end
 
   def pluck enumerable, *handles
     items = enumerable.each_with_object(
@@ -23,7 +40,6 @@ module PluckIt
     end
   end
 
-
   def pluckit v, *handles
     if handles.count > 1
       handles.map {|h| pluckit_single v, h }
@@ -31,7 +47,6 @@ module PluckIt
       pluckit_single v, handles.first
     end
   end
-
 
   private
 
@@ -48,5 +63,4 @@ module PluckIt
       raise ArgumentError.new "invalid handle: #{handle}, for value #{v}"
     end
   end
-
 end
