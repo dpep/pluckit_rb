@@ -21,9 +21,9 @@ describe "PluckIt.pluckit" do
     end
 
     context "when plucking with a regex" do
-      let(:data) { [ 'a', 'ba', 'bb', 'bc', 'ca' ] }
+      let(:data) { [ "a", "ba", "bb", "bc", "ca" ] }
 
-      it { expect(PluckIt.pluckit(data, /a/)).to eq [ 'a', 'ba', 'ca' ] }
+      it { expect(PluckIt.pluckit(data, /a/)).to eq [ "a", "ba", "ca" ] }
     end
 
     it "returns nil for bogus a index" do

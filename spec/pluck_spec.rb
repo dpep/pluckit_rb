@@ -2,9 +2,9 @@ describe "PluckIt.pluck" do
   context "when plucking from arrays" do
     let(:data) do
       [
-        { k: 'a', v: 1 },
-        { k: 'b', v: 2 },
-        { k: 'c', v: 3 },
+        { k: "a", v: 1 },
+        { k: "b", v: 2 },
+        { k: "c", v: 3 },
       ]
     end
 
@@ -38,8 +38,8 @@ describe "PluckIt.pluck" do
 
     let(:data) do
       Set.new [
-        { name: 'dpepper', age: 31 },
-        { name: 'josh', age: 30 },
+        { name: "dpepper", age: 31 },
+        { name: "josh", age: 30 },
       ]
     end
 

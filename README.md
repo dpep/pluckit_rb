@@ -11,16 +11,16 @@ Extract values from Enumerables
 
 #### Usage
 ```ruby
-require 'pluckit'
+require "pluckit"
 
 
 # extract a field from a list of records
 [
-  { id: 1, name: 'alice', age: 30},
-  { id: 2, name: 'bob', age: 24},
-  { id: 3, name: 'charlie', age: 88},
+  { id: 1, name: "alice", age: 30},
+  { id: 2, name: "bob", age: 24},
+  { id: 3, name: "charlie", age: 88},
 ].pluck :name
-=> [ 'alice', 'bob', 'charlie' ]
+=> [ "alice", "bob", "charlie" ]
 
 
 # find max temp for each month
