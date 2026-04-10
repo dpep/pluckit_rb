@@ -1,5 +1,6 @@
-require_relative "pluckit/pluck.rb"
-require_relative "pluckit/version.rb"
+require 'set'
+require_relative 'pluckit/version'
+require_relative 'pluckit/pluck'
 
 class Array
   def pluck *handles
