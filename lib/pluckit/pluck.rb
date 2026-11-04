@@ -20,13 +20,13 @@ module PluckIt
   end
 
   def pluck enumerable, *handles
-    # these keep their type (and subclass) via clone.clear; anything else maps
+    # these keep their type (and subclass) via dup.clear; anything else maps
     unless [ Array, Hash, Set ].any? { |klass| enumerable.is_a?(klass) }
       return enumerable.map { |val| pluckit(val, *handles) }
     end
 
     items = enumerable.each_with_object(
-      enumerable.clone.clear
+      enumerable.dup.clear # dup, not clone: clone keeps frozen and singleton methods
     )
 
     if enumerable.is_a?(Hash)

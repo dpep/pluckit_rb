@@ -1,4 +1,14 @@
 describe "PluckIt.pluck" do
+  context "when the input is frozen" do
+    it "returns a new, unfrozen result" do
+      res = PluckIt.pluck([ { a: 1 } ].freeze, :a)
+      expect(res).to eq [ 1 ]
+      expect(res).not_to be_frozen
+      expect(PluckIt.pluck({ x: { a: 1 } }.freeze, :a)).to eq({ x: 1 })
+      expect(PluckIt.pluck(Set[{ a: 1 }].freeze, :a)).to eq(Set[1])
+    end
+  end
+
   context "when plucking from other enumerables" do
     it "returns an array" do
       expect(PluckIt.pluck(1..3, :to_s)).to eq [ "1", "2", "3" ]
