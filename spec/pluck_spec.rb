@@ -1,4 +1,17 @@
 describe "PluckIt.pluck" do
+  context "when plucking from other enumerables" do
+    it "returns an array" do
+      expect(PluckIt.pluck(1..3, :to_s)).to eq [ "1", "2", "3" ]
+      expect(PluckIt.pluck([ { a: 1 }, { a: 2 } ].each, :a)).to eq [ 1, 2 ]
+      expect(PluckIt.pluck({ x: 1 }.each, 0, 1)).to eq [ [ :x, 1 ] ]
+    end
+
+    it "stays lazy" do
+      res = PluckIt.pluck((1..).lazy, :to_s)
+      expect(res.first(2)).to eq [ "1", "2" ]
+    end
+  end
+
   context "when plucking from arrays" do
     let(:data) do
       [
