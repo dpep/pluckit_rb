@@ -1,4 +1,4 @@
-###  Unreleased
+###  1.3.0  (2026-11-03)
   - drop Ruby 3.0 and 3.1 (end of life); requires Ruby >= 3.2
   - feature: a callable handle (lambda, proc, Method) is called with each value: `users.pluck(->(u) { u.name.upcase })`
 
