@@ -51,7 +51,9 @@ module PluckIt
   private
 
   def pluckit_single v, handle
-    if v.is_a? Hash
+    if handle.respond_to?(:call)
+      handle.call v
+    elsif v.is_a? Hash
       v[handle]
     elsif ([Symbol, String].include? handle.class) && v.respond_to?(handle)
       v.send handle

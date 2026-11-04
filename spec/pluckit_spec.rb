@@ -81,6 +81,26 @@ describe "PluckIt.pluckit" do
     end
   end
 
+  context "when plucking with a callable" do
+    it "calls it with the value" do
+      expect(PluckIt.pluckit({ a: 1 }, ->(h) { h[:a] * 10 })).to eq 10
+      expect(PluckIt.pluckit(ABC.new, ->(o) { o.ott + 1 })).to eq 124
+      expect(PluckIt.pluckit(" x ", :strip.to_proc)).to eq "x"
+    end
+
+    it "accepts a Method" do
+      expect(PluckIt.pluckit(3, 2.method(:+))).to eq 5
+    end
+
+    it "mixes with other handles" do
+      expect(PluckIt.pluckit([ 1, 2 ], 0, ->(a) { a.sum })).to eq [ 1, 3 ]
+    end
+
+    it "works through pluck" do
+      expect(PluckIt.pluck([ { a: 1 }, { a: 2 } ], ->(h) { h[:a] + 1 })).to eq [ 2, 3 ]
+    end
+  end
+
   it "catches bogus plucks" do
     expect {
       PluckIt.pluckit(ABC.new, :bogus)

@@ -34,4 +34,9 @@ require 'pluckit'
   july: 86,
   august: 80,
 }
+
+
+# or pass anything callable
+[ 'alice', 'bob' ].pluck ->(name) { name.capitalize }
+=> [ 'Alice', 'Bob' ]
 ```
