@@ -40,3 +40,17 @@ require 'pluckit'
 [ 'alice', 'bob' ].pluck ->(name) { name.capitalize }
 => [ 'Alice', 'Bob' ]
 ```
+
+
+#### Without the monkey patch
+`require 'pluckit'` adds `#pluck` to Array, Hash, and Set. To skip the global patch, load the module alone and use the refinement, or call it directly:
+
+```ruby
+require 'pluckit/pluck'
+
+using PluckIt
+[ { id: 1 } ].pluck :id
+
+# or
+PluckIt.pluck [ { id: 1 } ], :id
+```
