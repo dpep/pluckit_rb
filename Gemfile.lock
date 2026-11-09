@@ -59,7 +59,7 @@ DEPENDENCIES
   pluckit!
   rspec (>= 3.10)
   rspec-debugging
-  simplecov (>= 1, < 1.3)
+  simplecov (>= 1)
 
 BUNDLED WITH
   4.0.10
